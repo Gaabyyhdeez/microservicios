@@ -8,9 +8,9 @@ app = Flask(__name__)
 client = bigquery.Client()
 
 # Define tu proyecto y dataset
-PROJECT_ID = 'tu-proyecto-id'
-DATASET_ID = 'tu-dataset-id'
-TABLE_ID = 'tu-tabla-id'
+PROJECT_ID = 'serious-ascent-363716'
+DATASET_ID = 'example'
+TABLE_ID = 'names_2023'
 
 @app.route('/data')
 def get_data():
@@ -21,6 +21,7 @@ def get_data():
     data = []
     for row in results:
         data.append(dict(row))
+        print(row)
     
     return jsonify(data)
 
