@@ -12,8 +12,6 @@ PROJECT_ID = 'serious-ascent-363716'
 DATASET_ID = 'example'
 TABLE_ID = 'names_2023'
 
-
-
 @app.route('/data')
 def get_data():
     query = f'SELECT * FROM `{PROJECT_ID}.{DATASET_ID}.{TABLE_ID}` LIMIT 10'
