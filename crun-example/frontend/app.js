@@ -5,7 +5,7 @@ const app = express();
 const port = 8081;
 
 // Reemplaza 'BACKEND_URL' con la URL real del backend
-const backendUrl = 'https://backend-service-xxxxxx.a.run.app/data';
+const backendUrl = 'https://backend-xqwtvnmaqq-uc.a.run.app/data';
 
 app.get('/', async (req, res) => {
   try {

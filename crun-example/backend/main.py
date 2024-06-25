@@ -8,9 +8,9 @@ app = Flask(__name__)
 client = bigquery.Client()
 
 # Define tu proyecto y dataset
-PROJECT_ID = 'serious-ascent-363716'
-DATASET_ID = 'example'
-TABLE_ID = 'names_2023'
+PROJECT_ID = 'electric-spark-426917-j8'
+DATASET_ID = 'my_ds'
+TABLE_ID = 'names'
 
 @app.route('/data')
 def get_data():
