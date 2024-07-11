@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de objetos API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #f0f0f0;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Datos de la API:</h1>
+    <ul id="jsonList"></ul>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // URL de la que se obtendrá el JSON
+            const url = 'https://api-test-qwiklabs-gcp-01-5029601b0c28.apiservices.dev/retail/v1/categories/8';
+
+            // Función para crear elementos de lista desde un objeto
+            function createListFromObject(obj, parentElement) {
+                const ul = document.createElement('ul');
+
+                for (const key in obj) {
+                    if (obj.hasOwnProperty(key)) {
+                        const li = document.createElement('li');
+                        if (typeof obj[key] === 'object' && obj[key] !== null) {
+                            li.textContent = `${key}:`;
+                            createListFromObject(obj[key], li);
+                        } else {
+                            li.textContent = `${key}: ${obj[key]}`;
+                        }
+                        ul.appendChild(li);
+                    }
+                }
+                parentElement.appendChild(ul);
+            }
+
+            // Función para obtener el JSON y actualizar la lista
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    const list = document.getElementById('jsonList');
+
+                    if (Array.isArray(data)) {
+                        data.forEach(item => {
+                            const listItem = document.createElement('li');
+                            createListFromObject(item, listItem);
+                            list.appendChild(listItem);
+                        });
+                    } else {
+                        createListFromObject(data, list);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error al obtener el JSON:', error);
+                });
+        });
+    </script>
+</body>
+</html>
